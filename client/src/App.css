@@ -24,6 +24,11 @@
   color: white;
 }
 
+.image-header {
+  width: 50px;
+  margin-left: 20px;
+}
+
 .list {
   text-align: left;
   max-width: 750px;
@@ -42,6 +47,16 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.left-margin {margin-left: 20px;}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.btn {
+  align-items: center;
 }
 
 @keyframes App-logo-spin {

@@ -7,6 +7,7 @@ class Tutorial extends Component {
     super(props);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeCpf = this.onChangeCpf.bind(this);
     this.getTutorial = this.getTutorial.bind(this);
     this.updatePublished = this.updatePublished.bind(this);
     this.updateTutorial = this.updateTutorial.bind(this);
@@ -17,6 +18,7 @@ class Tutorial extends Component {
         id: null,
         title: "",
         description: "",
+        cpf: "",
         published: false
       },
       message: ""
@@ -51,6 +53,18 @@ class Tutorial extends Component {
     }));
   }
 
+  onChangeCpf(e) {
+    const cpf = e.target.value;
+    
+    this.setState(prevState => ({
+      currentTutorial: {
+        ...prevState.currentTutorial,
+        cpf: cpf
+      }
+    }));
+  }
+
+
   getTutorial(id) {
     TutorialDataService.get(id)
       .then(response => {
@@ -69,6 +83,7 @@ class Tutorial extends Component {
       id: this.state.currentTutorial.id,
       title: this.state.currentTutorial.title,
       description: this.state.currentTutorial.description,
+      cpf: this.state.currentTutorial.cpf,
       published: status
     };
 
@@ -95,7 +110,7 @@ class Tutorial extends Component {
       .then(response => {
         console.log(response.data);
         this.setState({
-          message: "The tutorial was updated successfully!"
+          message: "Cliente alterado com sucesso!"
         });
       })
       .catch(e => {
@@ -121,10 +136,10 @@ class Tutorial extends Component {
       <div>
         {currentTutorial ? (
           <div className="edit-form">
-            <h4>Tutorial</h4>
+            <h4>Cliente</h4>
             <form>
               <div className="form-group">
-                <label htmlFor="title">Title</label>
+                <label htmlFor="title">Nome</label>
                 <input
                   type="text"
                   className="form-control"
@@ -134,7 +149,7 @@ class Tutorial extends Component {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="description">Description</label>
+                <label htmlFor="description">Email</label>
                 <input
                   type="text"
                   className="form-control"
@@ -143,33 +158,21 @@ class Tutorial extends Component {
                   onChange={this.onChangeDescription}
                 />
               </div>
-
               <div className="form-group">
-                <label>
-                  <strong>Status:</strong>
-                </label>
-                {currentTutorial.published ? "Published" : "Pending"}
+                <label htmlFor="cpf">CPF</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="cpf"
+                  value={currentTutorial.cpf}
+                  onChange={this.onChangeCpf}
+                />
               </div>
+
             </form>
 
-            {currentTutorial.published ? (
-              <button
-                className="badge badge-primary mr-2"
-                onClick={() => this.updatePublished(false)}
-              >
-                UnPublish
-              </button>
-            ) : (
-              <button
-                className="badge badge-primary mr-2"
-                onClick={() => this.updatePublished(true)}
-              >
-                Publish
-              </button>
-            )}
-
             <button
-              className="badge badge-danger mr-2"
+              className="badge badge-danger mr-2 navbar-dark bg-dark"
               onClick={this.deleteTutorial}
             >
               Delete
@@ -177,17 +180,17 @@ class Tutorial extends Component {
 
             <button
               type="submit"
-              className="badge badge-success"
+              className="badge badge-success navbar-dark bg-dark"
               onClick={this.updateTutorial}
             >
-              Update
+              Atualizar
             </button>
             <p>{this.state.message}</p>
           </div>
         ) : (
           <div>
             <br />
-            <p>Please click on a Tutorial...</p>
+            
           </div>
         )}
       </div>

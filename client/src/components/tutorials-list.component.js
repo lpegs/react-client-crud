@@ -94,7 +94,7 @@ export default class TutorialsList extends Component {
             <input
               type="text"
               className="form-control"
-              placeholder="Search by title"
+              placeholder="Buscar Cliente"
               value={searchTitle}
               onChange={this.onChangeSearchTitle}
             />
@@ -104,13 +104,13 @@ export default class TutorialsList extends Component {
                 type="button"
                 onClick={this.searchTitle}
               >
-                Search
+                Buscar
               </button>
             </div>
           </div>
         </div>
         <div className="col-md-6">
-          <h4>Tutorials List</h4>
+          <h4>Clientes</h4>
 
           <ul className="list-group">
             {tutorials &&
@@ -132,43 +132,42 @@ export default class TutorialsList extends Component {
             className="m-3 btn btn-sm btn-danger"
             onClick={this.removeAllTutorials}
           >
-            Remove All
+            Remover Todos
           </button>
         </div>
         <div className="col-md-6">
           {currentTutorial ? (
             <div>
-              <h4>Tutorial</h4>
+              <h4>Cliente</h4>
               <div>
                 <label>
-                  <strong>Title:</strong>
+                  <strong>Nome:</strong>
                 </label>{" "}
                 {currentTutorial.title}
               </div>
               <div>
                 <label>
-                  <strong>Description:</strong>
+                  <strong>Email:</strong>
                 </label>{" "}
                 {currentTutorial.description}
               </div>
               <div>
                 <label>
-                  <strong>Status:</strong>
+                  <strong>CPF:</strong>
                 </label>{" "}
-                {currentTutorial.published ? "Published" : "Pending"}
+                {currentTutorial.cpf}
               </div>
 
               <Link
                 to={"/tutorials/" + currentTutorial.id}
-                className="badge badge-warning"
+                className="badge badge-warning navbar-dark bg-dark"
               >
-                Edit
+                Editar Cadastro
               </Link>
             </div>
           ) : (
             <div>
               <br />
-              <p>Please click on a Tutorial...</p>
             </div>
           )}
         </div>

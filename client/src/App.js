@@ -12,18 +12,19 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/tutorials"} className="navbar-brand">
-            bezKoder
+          <img className="image-header" src="./cliente.png" />
+          <Link to={"/tutorials"} className="navbar-brand left-margin">
+            CustomerBase
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link to={"/tutorials"} className="nav-link">
-                Tutorials
+                Clientes
               </Link>
             </li>
             <li className="nav-item">
               <Link to={"/add"} className="nav-link">
-                Add
+                Adicionar
               </Link>
             </li>
           </div>

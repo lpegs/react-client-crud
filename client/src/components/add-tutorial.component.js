@@ -6,6 +6,7 @@ export default class AddTutorial extends Component {
     super(props);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeCpf = this.onChangeCpf.bind(this);
     this.saveTutorial = this.saveTutorial.bind(this);
     this.newTutorial = this.newTutorial.bind(this);
 
@@ -13,6 +14,7 @@ export default class AddTutorial extends Component {
       id: null,
       title: "",
       description: "", 
+      cpf: "",
       published: false,
 
       submitted: false
@@ -31,10 +33,17 @@ export default class AddTutorial extends Component {
     });
   }
 
+  onChangeCpf(e) {
+    this.setState({
+      cpf: e.target.value
+    });
+  }
+
   saveTutorial() {
     var data = {
       title: this.state.title,
-      description: this.state.description
+      description: this.state.description,
+      cpf: this.state.cpf
     };
 
     TutorialDataService.create(data)
@@ -43,6 +52,7 @@ export default class AddTutorial extends Component {
           id: response.data.id,
           title: response.data.title,
           description: response.data.description,
+          cpf: response.data.cpf,
           published: response.data.published,
           submitted: true
         });
@@ -58,6 +68,7 @@ export default class AddTutorial extends Component {
       id: null,
       title: "",
       description: "",
+      cpf: "",
       published: false,
 
       submitted: false
@@ -69,7 +80,7 @@ export default class AddTutorial extends Component {
       <div className="submit-form">
         {this.state.submitted ? (
           <div>
-            <h4>You submitted successfully!</h4>
+            <h4>Cliente Cadastro com Sucesso</h4>
             <button className="btn btn-success" onClick={this.newTutorial}>
               Add
             </button>
@@ -77,7 +88,7 @@ export default class AddTutorial extends Component {
         ) : (
           <div>
             <div className="form-group">
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title">Nome</label>
               <input
                 type="text"
                 className="form-control"
@@ -90,9 +101,9 @@ export default class AddTutorial extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="description">Description</label>
+              <label htmlFor="description">Email</label>
               <input
-                type="text"
+                type="email"
                 className="form-control"
                 id="description"
                 required
@@ -102,8 +113,21 @@ export default class AddTutorial extends Component {
               />
             </div>
 
+            <div className="form-group">
+              <label htmlFor="cpf">CPF</label>
+              <input
+                type="number"
+                className="form-control"
+                id="cpf"
+                required
+                value={this.state.cpf}
+                onChange={this.onChangeCpf}
+                name="cpf"
+              />
+            </div>
+
             <button onClick={this.saveTutorial} className="btn btn-success">
-              Submit
+              Enviar
             </button>
           </div>
         )}
