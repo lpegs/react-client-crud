@@ -88,19 +88,20 @@ export default class TutorialsList extends Component {
     const { searchTitle, tutorials, currentTutorial, currentIndex } = this.state;
 
     return (
+      <>
       <div className="list row">
         <div className="col-md-8">
-          <div className="input-group mb-3">
+          <div className="input-group mb-3 ">
             <input
               type="text"
-              className="form-control"
+              className="form-control input-search"
               placeholder="Buscar Cliente"
               value={searchTitle}
               onChange={this.onChangeSearchTitle}
             />
             <div className="input-group-append">
               <button
-                className="btn btn-outline-secondary"
+                className="btn btn-outline-secondary search-btn"
                 type="button"
                 onClick={this.searchTitle}
               >
@@ -109,7 +110,7 @@ export default class TutorialsList extends Component {
             </div>
           </div>
         </div>
-        <div className="col-md-6">
+        <div className="list2 col-md-6">
           <h4>Clientes</h4>
 
           <ul className="list-group">
@@ -135,43 +136,44 @@ export default class TutorialsList extends Component {
             Remover Todos
           </button>
         </div>
-        <div className="col-md-6">
-          {currentTutorial ? (
-            <div>
-              <h4>Cliente</h4>
-              <div>
-                <label>
-                  <strong>Nome:</strong>
-                </label>{" "}
-                {currentTutorial.title}
-              </div>
-              <div>
-                <label>
-                  <strong>Email:</strong>
-                </label>{" "}
-                {currentTutorial.description}
-              </div>
-              <div>
-                <label>
-                  <strong>CPF:</strong>
-                </label>{" "}
-                {currentTutorial.cpf}
-              </div>
-
-              <Link
-                to={"/tutorials/" + currentTutorial.id}
-                className="badge badge-warning navbar-dark bg-dark"
-              >
-                Editar Cadastro
-              </Link>
-            </div>
-          ) : (
-            <div>
-              <br />
-            </div>
-          )}
-        </div>
       </div>
+        <div className="list3 col-md-6">
+        {currentTutorial ? (
+          <div>
+            <h4>Cliente</h4>
+            <div>
+              <label>
+                <strong>Nome:</strong>
+              </label>{" "}
+              {currentTutorial.title}
+            </div>
+            <div>
+              <label>
+                <strong>Email:</strong>
+              </label>{" "}
+              {currentTutorial.description}
+            </div>
+            <div>
+              <label>
+                <strong className="text-cpf">CPF:</strong>
+              </label>{" "}
+              {currentTutorial.cpf}
+            </div>
+
+            <Link
+              to={"/tutorials/" + currentTutorial.id}
+              className="edit-btn"
+            >
+              Editar Cadastro
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <br />
+          </div>
+        )}
+      </div>
+    </>
     );
   }
 }

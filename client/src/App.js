@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand abalo">
           <img className="image-header" src="./cliente.png" />
           <Link to={"/tutorials"} className="navbar-brand left-margin">
             CustomerBase

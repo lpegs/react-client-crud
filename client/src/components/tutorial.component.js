@@ -172,15 +172,15 @@ class Tutorial extends Component {
             </form>
 
             <button
-              className="badge badge-danger mr-2 navbar-dark bg-dark"
+              className="edit-btn"
               onClick={this.deleteTutorial}
             >
-              Delete
+              Deletar
             </button>
 
             <button
               type="submit"
-              className="badge badge-success navbar-dark bg-dark"
+              className="edit-btn right"
               onClick={this.updateTutorial}
             >
               Atualizar
